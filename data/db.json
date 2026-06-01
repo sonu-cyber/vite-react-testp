@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "React Vite",
+      "book": "A book to learn how to implement React with Vite and Tailwind CSS. It covers the basics of React, Vite, and Tailwind CSS, and provides practical examples and projects to help you learn how to build modern web applications using these technologies."
+    },
+    {
+      "id": 2,
+      "title": "Vue with Vite",
+      "book": "A book to learn how to use Vite with VueJs and Tailwind CSS. It covers the basics of VueJs, Vite, and Tailwind CSS, and provides practical examples and projects to help you learn how to build modern web applications using these technologies."
+    },
+    {
+      "id": 3,
+      "title": "React with Vite and Styled Components",
+      "book": "This book helps you learn about React with Vite and Styled Components. It covers the basics of React, Vite, and Styled Components, and provides practical examples and projects to help you learn how to build modern web applications using these technologies."
+    },
+    {
+      "id": 4,
+      "title": "How to use CSS Modules in your React Projects",
+      "book": "This book teaches you the basics of CSS Modules and how to use them in your React projects. It covers the benefits of using CSS Modules, how to set up your project to use them, and provides practical examples and projects to help you learn how to style your React applications using CSS Modules"
+    }
+  ]
+}
