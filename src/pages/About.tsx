@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "./About.module.css";
+import styles from "./about.module.css";
 import styled from "styled-components";
 
 export default function About() {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./Layout.module.css";
+import styles from "../pages/layout.module.css";
 
 export default function Layout() {
   return (
