@@ -39,7 +39,7 @@ export default function About() {
         setDataAxios(response.data);
         console.log("Response Data from AXIOS:", response.data);
       } catch (error) {
-        setError(error.message);
+        setError(error.message || "An error occurred while fetching data.");
         console.log("error", error);
       } finally {
         setLoading(false);
@@ -54,7 +54,7 @@ export default function About() {
         setLoading(true);
       }
       if (error) {
-        setError(null);
+        setError(error.message || "An error occurred while fetching data.");
       }
       const res = await fetch("https://api.restful-api.dev/objects/4");
       if (!res.ok) throw new Error(`Got ${res.status}`);
@@ -62,7 +62,7 @@ export default function About() {
       console.log("data", data);
       setDataAPI(data);
     } catch (error) {
-      setError(error.message);
+      setError(error.message || "An error occurred while fetching data.");
       console.log("error", error);
     } finally {
       setLoading(false);
@@ -74,7 +74,7 @@ export default function About() {
         setLoading(true);
       }
       if (error) {
-        setError(null);
+        setError(error.message || "An error occurred while fetching data.");
       }
       const res = await fetch(`${goAPI}/users/`);
       if (res.status === 404) return null;
@@ -83,7 +83,7 @@ export default function About() {
       console.log("goDataAPI", goDataAPI);
       setRestData(goDataAPI);
     } catch (error) {
-      setError(error.message);
+      setError(error.message || "An error occurred while fetching data.");
       console.log("error", error);
     } finally {
       setLoading(false);

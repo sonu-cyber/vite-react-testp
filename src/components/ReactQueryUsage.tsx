@@ -33,7 +33,7 @@ export default function ReactQueryUsage() {
         List of Posts
       </h1>
 
-      {data.map((post) => (
+      {data.map((post: any) => (
         <ul key={post.id} className="p-3 border-3 border-amber-200 mb-5">
           <li className="italic font-bold">{post.title}</li>
           <li>{post.book}</li>

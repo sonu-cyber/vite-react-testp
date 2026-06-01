@@ -1,4 +1,4 @@
-import WeatherItem from "./weatherItem";
+import WeatherItem from "./WeatherItem";
 import { useState } from "react";
 
 export default function WeatherData() {
@@ -36,7 +36,9 @@ export default function WeatherData() {
         });
     } catch (error) {
       console.log("error", error);
-      setError(error.message);
+      setError(
+        error.message || "An error occurred while fetching weather data."
+      );
     } finally {
       setLoading(false);
     }
