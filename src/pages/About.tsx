@@ -3,16 +3,37 @@ import { useState } from "react";
 import axios from "axios";
 import styles from "./about.module.css";
 import styled from "styled-components";
+type Post = {
+  id: number;
+  title: string;
+  book: string;
+};
+type RestData = {
+  id: number;
+  name: string;
+  email: string;
+  gender: string;
+  status: string;
+};
+type DataAPI = {
+  name: string;
+  data: {
+    color: string;
+    price: number;
+  };
+};
 
 export default function About() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [dataAPI, setDataAPI] = useState(null);
-  const [dataAxios, setDataAxios] = useState(null);
+  const [dataAPI, setDataAPI] = useState<DataAPI | null>(null);
+
+  const [dataAxios, setDataAxios] = useState<Post[]>([]);
   /*Use Go REST API to get data from a free website */
-  const [restData, setRestData] = useState(null);
+  const [restData, setRestData] = useState<RestData[]>([]);
   const goAPI = "https://gorest.co.in/public/v2";
   const URL = "http://localhost:8000/posts/";
+
   /*  const TOKEN =
     "c8dbce988a2a5c234807a4fdeb736ac49a5b602c0eb7e53ff52cb32179301a32";
   const headers = {
@@ -31,15 +52,17 @@ export default function About() {
         if (!loading) {
           setLoading(true);
         }
-        if (error) {
-          setError(null);
-        }
+
         // Axios automatically parses JSON data into response.data
         const response = await axios.get(URL);
         setDataAxios(response.data);
         console.log("Response Data from AXIOS:", response.data);
       } catch (error) {
-        setError(error.message || "An error occurred while fetching data.");
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("An unknown error occurred.");
+        }
         console.log("error", error);
       } finally {
         setLoading(false);
@@ -53,16 +76,18 @@ export default function About() {
       if (!loading) {
         setLoading(true);
       }
-      if (error) {
-        setError(error.message || "An error occurred while fetching data.");
-      }
+
       const res = await fetch("https://api.restful-api.dev/objects/4");
       if (!res.ok) throw new Error(`Got ${res.status}`);
       const data = await res.json();
       console.log("data", data);
       setDataAPI(data);
     } catch (error) {
-      setError(error.message || "An error occurred while fetching data.");
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
       console.log("error", error);
     } finally {
       setLoading(false);
@@ -73,9 +98,6 @@ export default function About() {
       if (!loading) {
         setLoading(true);
       }
-      if (error) {
-        setError(error.message || "An error occurred while fetching data.");
-      }
       const res = await fetch(`${goAPI}/users/`);
       if (res.status === 404) return null;
       if (!res.ok) throw new Error(`Got ${res.status}`);
@@ -83,7 +105,11 @@ export default function About() {
       console.log("goDataAPI", goDataAPI);
       setRestData(goDataAPI);
     } catch (error) {
-      setError(error.message || "An error occurred while fetching data.");
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
       console.log("error", error);
     } finally {
       setLoading(false);
@@ -94,15 +120,15 @@ export default function About() {
       <h1 className="text-center mx-auto text-2xl sm:md:text-3xl lg:xl:2xl:text-4xl text-wrap text-orange-800">
         About Page!
       </h1>
-      <div className="flex flex-col justify-center items-center text-left mt-30 pl-2 mx-auto text-[12px] min-w-fit sm:mx-auto sm:justify-center sm:items-center sm:text-lg sm:md:w-dvw md:justify-center md:items-center md:text-xl lg:justify-center lg:items-center lg:text-xl lg:xl:2xl:w-dvw xl:justify-center xl:items-center xl:text-xl  2xl:mx-auto 2xl:place-items-center 2xl:text-4xl 2xl:justify-center 2xl:text-left">
-        <section className="flex min-w-80 px-2 text-left text-wrap mb-30 sm:text-xl sm:text-gray-500 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw">
+      <div className="flex flex-col justify-center items-center text-left mt-30 pl-2 mx-auto text-[12px] min-w-fit sm:mx-auto sm:justify-center sm:items-center sm:text-lg sm:md:w-dvw md:justify-center md:items-center md:text-xl lg:justify-center lg:items-center lg:text-xl lg:xl:2xl:w-dvw xl:justify-center xl:items-center xl:text-xl  2xl:mx-auto 2xl:place-items-center 2xl:justify-center 2xl:text-left ">
+        <section className="flex min-w-80 px-2 text-left text-wrap mb-30 sm:text-xl sm:text-gray-500 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw sm:md:text-[18px] lg:xl:text-2xl 2xl:text-3xl">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
           laudantium consectetur repellendus nesciunt, est tempore! Maiores eius
           ea suscipit nam ipsum est repellat magni beatae. Ullam fuga mollitia
           distinctio. Error.
         </section>
         <Button
-          className="flex bg-amber-600 w-fit p-4 h-10 mt-2 justify-center text-left items-center text-white rounded-md hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition-colors duration-300 ease-in-out"
+          className="flex bg-amber-600 w-fit p-4 h-10 mt-2 justify-center text-left items-center text-white rounded-md hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition-colors duration-300 ease-in-out sm:md:text-[18px] lg:xl:text-2xl 2xl:text-3xl"
           onClick={() => handleClick()}
         >
           Fetch Axios Data!
@@ -123,7 +149,7 @@ export default function About() {
               </ul>
             ))}
         </div>
-        <section className="flex min-w-80 px-2 text-left text-wrap mb-30 sm:text-xl sm:text-gray-500 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw">
+        <section className="flex min-w-80 px-2 text-left text-wrap mb-30 sm:text-xl sm:text-gray-500 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw sm:md:text-[18px] lg:xl:text-2xl 2xl:text-3xl">
           Get Rest API data from https://api.restful-api.dev/. The API provides
           a simple way to access a variety of data, including users, posts,
           comments, and more. The API is free to use and does not require an API
@@ -142,15 +168,16 @@ export default function About() {
         <div>
           {/* Display Rest API data in a list */}
           {dataAPI && (
-            <ul>
+            <ul className="text-[16px] p-2 sm:md:text-[18px] lg:xl:text-2xl 2xl:text-3xl">
               <li>Name:{dataAPI.name}</li>
               <li>Color:{dataAPI.data.color}</li>
+              <li>Price:{dataAPI.data.price}</li>
             </ul>
           )}
         </div>
         <br />
         <br />
-        <section className="flex min-w-80 px-2 text-left text-wrap mb-30 sm:text-xl sm:text-gray-500 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw">
+        <section className="flex min-w-80 px-2 text-left text-wrap mb-30 sm:text-xl sm:text-gray-500 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw sm:md:text-[18px] lg:xl:text-2xl 2xl:text-3xl">
           Get Rest API data from
           https://gorest.co.in/docs/javascript#fetch-a-single-user. The API
           provides a simple way to access a variety of data, including users,

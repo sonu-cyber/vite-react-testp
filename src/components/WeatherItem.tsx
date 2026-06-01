@@ -1,4 +1,18 @@
-export default function WeatherItem({ weatherData }) {
+type WeatherData = {
+  latitude: number;
+  longitude: number;
+  temperature: number;
+  city: string;
+  current: {
+    apparent_temperature: number;
+    time: string;
+  };
+};
+type WeatherItemProps = {
+  weatherData: WeatherData;
+};
+
+export default function WeatherItem({ weatherData }: WeatherItemProps) {
   return (
     <div>
       {weatherData && (

@@ -7,6 +7,7 @@ export default function WeatherData() {
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+
   function getDateTime() {
     const date = new Date().toLocaleDateString();
     const time = new Date().toLocaleTimeString();
