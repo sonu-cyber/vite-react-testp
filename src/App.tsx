@@ -22,13 +22,6 @@ export default function App() {
   if (theme === "light") {
     setTheme(theme === "light" ? "dark" : "light");
   }
-  function Button({ color, children }) {
-    const colorVariants = {
-      blue: "bg-blue-600 hover:bg-blue-800",
-      orange: "bg-orange-400 hover:bg-orange-600",
-    };
-    return <button className={`${colorVariants[color]}...`}>{children}</button>;
-  }
 
   return (
     <div
@@ -72,7 +65,6 @@ export default function App() {
                       </Routes>
                     </section>
                     {/*} </main> */}
-                    <Button color children />
                   </div>
                   <Footer />
                   {/* Adds a floating icon to open the devtools */}
