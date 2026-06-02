@@ -25,7 +25,7 @@ type DataAPI = {
 
 export default function About() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [dataAPI, setDataAPI] = useState<DataAPI | null>(null);
 
   const [dataAxios, setDataAxios] = useState<Post[]>([]);
@@ -69,6 +69,9 @@ export default function About() {
       }
     };
     fetchData();
+    {
+      error && <p className="text-red-500">{error}</p>;
+    }
   }
 
   async function getRestAPI() {
@@ -92,6 +95,9 @@ export default function About() {
     } finally {
       setLoading(false);
     }
+    {
+      error && <p className="text-red-500">{error}</p>;
+    }
   }
   async function goRestAPI() {
     try {
@@ -113,6 +119,9 @@ export default function About() {
       console.log("error", error);
     } finally {
       setLoading(false);
+    }
+    {
+      error && <p className="text-red-500">{error}</p>;
     }
   }
   return (

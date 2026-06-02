@@ -1,4 +1,4 @@
-type WeatherData = {
+type WeatherInfo = {
   latitude: number;
   longitude: number;
   temperature: number;
@@ -9,7 +9,7 @@ type WeatherData = {
   };
 };
 type WeatherItemProps = {
-  weatherData: WeatherData;
+  weatherData: WeatherInfo;
 };
 
 export default function WeatherItem({ weatherData }: WeatherItemProps) {

@@ -1,9 +1,22 @@
 import WeatherItem from "./WeatherItem";
+import { Link } from "react-router-dom";
 import { useState } from "react";
-
+type WeatherInfo = {
+  latitude: number;
+  longitude: number;
+  temperature: number;
+  city: string;
+  current: {
+    apparent_temperature: number;
+    time: string;
+  };
+};
+/* type WeatherItemProps = {
+  weatherData: WeatherData;
+}; */
 export default function WeatherData() {
-  const [weatherData, setWeatherData] = useState(null);
-  const [error, setError] = useState(null);
+  const [weatherData, setWeatherData] = useState<WeatherInfo | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -21,9 +34,7 @@ export default function WeatherData() {
       if (!loading) {
         setLoading(true);
       }
-      if (error) {
-        setError(null);
-      }
+
       fetch(
         "https://api.open-meteo.com/v1/forecast?latitude=12.97&longitude=77.59&hourly=temperature_2m&current=temperature_2m,relative_humidity_2m,wind_speed_10m,apparent_temperature,is_day,precipitation,showers,rain"
       )
@@ -36,12 +47,17 @@ export default function WeatherData() {
           return setWeatherData(data);
         });
     } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
       console.log("error", error);
-      setError(
-        error.message || "An error occurred while fetching weather data."
-      );
     } finally {
       setLoading(false);
+    }
+    {
+      error && <p className="text-red-500">{error}</p>;
     }
   }
 
@@ -59,7 +75,6 @@ export default function WeatherData() {
         resource for developers who want to build weather applications or
         integrate weather data into their existing applications.
       </section>
-
       <button
         className="flex bg-amber-600 w-fit p-1 h-10 mt-0 mb-1 justify-center items-center text-white rounded-md hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition-colors duration-300 ease-in-out"
         onClick={() => getWeatherData()}
@@ -75,7 +90,32 @@ export default function WeatherData() {
       </button>
       <p>Today's Date:{date}</p>
       <p>Current Time:{time}</p>
-      <WeatherItem weatherData={weatherData} />
+      {weatherData && <WeatherItem weatherData={weatherData} />}
+      <div className=" flex flex-row grow text-left xs:text-[15px] pl-0 ml-0 gap-5 mt-400 text-pink-500 sm:md:text-lg lg:xl:text-xl 2xl:text-2xl">
+        <Link to="/">
+          <p className="hover:text-2xl duration-300 ease-in  hover:text-emerald-400 ">
+            Go to Home{" "}
+          </p>
+        </Link>
+        <Link to="/about">
+          <p className="hover:text-2xl duration-300 ease-in  hover:text-emerald-400 ">
+            Go to About
+          </p>
+        </Link>
+
+        <Link to="/contact">
+          <p className="hover:text-2xl duration-300 ease-in hover:text-emerald-400">
+            Go to Contact
+          </p>
+        </Link>
+
+        <Link className="" to="/layout">
+          <p className="hover:text-2xl duration-300 ease-in hover:text-emerald-400">
+            Go to Layout
+          </p>
+        </Link>
+      </div>
+      ;
     </div>
   );
 }

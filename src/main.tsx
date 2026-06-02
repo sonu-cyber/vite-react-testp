@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 //Create a client
 const queryClient = new QueryClient();
 //createRoot(document.getElementById("root")!).render(
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   //Provide the client to your App
   <QueryClientProvider client={queryClient}>
     <StrictMode>

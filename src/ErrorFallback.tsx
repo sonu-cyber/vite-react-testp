@@ -1,5 +1,5 @@
 type ErrorFallbackProps = {
-  error: Error;
+  error: unknown;
   resetErrorBoundary: () => void;
 };
 export default function ErrorFallback({
@@ -7,13 +7,10 @@ export default function ErrorFallback({
   resetErrorBoundary,
 }: ErrorFallbackProps) {
   return (
-    <div style={{ padding: "20px", background: "#fee2e2", color: "#991b1b" }}>
-      <h2>Something went wrong!</h2>
-      <p>{error.message}</p>
-      {/* This button will trigger a refetch in TanStack Query */}
-      <button onClick={resetErrorBoundary} style={{ marginTop: "10px" }}>
-        Try Again
-      </button>
+    <div>
+      <p>{error instanceof Error ? error.message : "Something went wrong"}</p>
+
+      <button onClick={resetErrorBoundary}>Try Again</button>
     </div>
   );
 }
