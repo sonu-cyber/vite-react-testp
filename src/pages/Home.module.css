@@ -6,8 +6,6 @@
   padding-top: 30px;
   margin-top: 40px;
   font-weight: 300;
-  height: 100dvh;
-  width: 100dvw;
 }
 .home:hover {
   display: inline-flex;
