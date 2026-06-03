@@ -83,24 +83,24 @@ export default function Layout() {
         </div>
       </div>
       <div className="flex flex-col items-start text-left pl-2 ml-2 mt-30 text-[14px] min-w-60 sm:mx-auto sm:justify-center sm:items-center sm:text-lg sm:md:w-dvw md:justify-center md:items-center md:text-xl lg:justify-center lg:items-center lg:text-2xl lg:xl:2xl:w-dvw xl:justify-center xl:items-center xl:text-2xl 2xl:mx-auto 2xl:place-items-center 2xl:text-4xl 2xl:justify-center 2xl:text-left">
-        <section className="flex min-w-80 px-2 text-left text-wrap mb-75 sm:text-xl sm:text-slate-600 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw">
+        <section className="flex min-w-80 px-2 text-left text-wrap mb-30 sm:text-xl sm:text-slate-600 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw">
           I have tried to use images with grid in TailwindCss. The images are
           stacked in 2 columns with a gap-6.
         </section>{" "}
-        <section className="flex min-w-80 px-2 text-left text-wrap mb-75 sm:text-xl sm:text-slate-600 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw">
+        <section className="flex min-w-80 px-2 text-left text-wrap mb-30 sm:text-xl sm:text-slate-600 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw">
           The above is a grid of Jungle Animals. The grid is responsive and will
           adjust to the screen size. The images are of high quality and are
           sourced from Unsplash. The grid is designed to be visually appealing
           and easy to navigate. The text below the images provides a brief
           description of the grid and its contents.
         </section>{" "}
-        <section className="flex min-w-80 px-2 text-left text-wrap mb-75 sm:text-xl sm:text-slate-600 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw">
+        <section className="flex min-w-80 px-2 text-left text-wrap mb-30 sm:text-xl sm:text-slate-600 sm:mx-auto sm:md:lg:xl:2xl:text-wrap sm:overflow-auto sm:md:w-dvw  sm:md:text-left sm:md:mx-2 sm:md:px-2 sm:md:text-wrap lg:xl:2xl:text-left lg:xl:2xl:w-dvw">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
           laudantium consectetur repellendus nesciunt, est tempore! Maiores eius
           ea suscipit nam ipsum est repellat magni beatae. Ullam fuga mollitia
           distinctio. Error.
         </section>{" "}
-        <div className=" flex flex-row grow text-left xs:text-[15px] pl-0 ml-0 gap-5 mt-400 text-pink-500 sm:md:text-lg lg:xl:text-xl 2xl:text-2xl">
+        <div className=" flex flex-row grow text-left xs:text-[15px] pl-0 ml-0 gap-5 mt-200 text-pink-500 sm:md:text-lg lg:xl:text-xl 2xl:text-2xl">
           <Link to="/">
             <p className="hover:text-2xl duration-300 ease-in  hover:text-emerald-400 ">
               Go to Home
@@ -114,6 +114,11 @@ export default function Layout() {
           <Link to="/contact">
             <p className="hover:text-2xl duration-300 ease-in  hover:text-emerald-400 ">
               Go to Contact
+            </p>
+          </Link>
+          <Link to="/weatherData">
+            <p className="hover:text-2xl duration-300 ease-in  hover:text-emerald-400 ">
+              Go to WeatherData
             </p>
           </Link>
         </div>

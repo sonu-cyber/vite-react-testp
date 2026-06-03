@@ -221,7 +221,7 @@ export default function About() {
             ))}
         </div>
         <br />
-        <div className=" flex flex-row grow text-left xs:text-[15px] pl-0 ml-0 gap-5 mt-400 text-pink-500 sm:md:text-lg lg:xl:text-xl 2xl:text-2xl">
+        <div className=" flex flex-row grow text-left xs:text-[15px] pl-0 ml-0 gap-5 mt-200 text-pink-500 sm:md:text-lg lg:xl:text-xl 2xl:text-2xl">
           <Link to="/">
             <p className="hover:text-2xl duration-300 ease-in  hover:text-emerald-400 ">
               Go to Home{" "}
@@ -237,6 +237,11 @@ export default function About() {
           <Link className="" to="/layout">
             <p className="hover:text-2xl duration-300 ease-in hover:text-emerald-400">
               Go to Layout
+            </p>
+          </Link>
+          <Link className="" to="/weatherData">
+            <p className="hover:text-2xl duration-300 ease-in hover:text-emerald-400">
+              Go to WeatherData
             </p>
           </Link>
         </div>
